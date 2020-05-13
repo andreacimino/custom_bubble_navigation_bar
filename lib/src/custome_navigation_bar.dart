@@ -23,6 +23,8 @@ import 'package:flutter/material.dart';
 import 'util/default_style.dart';
 import 'dart:math' as math;
 
+const double PADDING_SIZE = 13;
+
 class CustomNavigationBar extends StatefulWidget {
   ///
   /// create a [CustomNavigationBar]
@@ -140,7 +142,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
     _sizes = List<double>.generate(widget.items.length, (index) {
       return 0.0;
     });
-    _maxRadius = widget.iconSize + 20;
+    _maxRadius = widget.iconSize + (2 * PADDING_SIZE);
   }
 
   @override
@@ -284,9 +286,13 @@ class _CustomNavigationBarTile extends StatelessWidget {
     return Transform.scale(
       scale: 1.0 + scale,
       child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         child: Padding(
-            padding:
-                const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+            padding: const EdgeInsets.only(
+                top: PADDING_SIZE,
+                bottom: PADDING_SIZE,
+                left: PADDING_SIZE,
+                right: PADDING_SIZE),
             child: Icon(
               item.icon,
               color: selected ? selectedColor : unSelectedColor,
