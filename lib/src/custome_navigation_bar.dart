@@ -140,7 +140,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
     _sizes = List<double>.generate(widget.items.length, (index) {
       return 0.0;
     });
-    _maxRadius = widget.iconSize;
+    _maxRadius = widget.iconSize + 20;
   }
 
   @override
@@ -284,11 +284,14 @@ class _CustomNavigationBarTile extends StatelessWidget {
     return Transform.scale(
       scale: 1.0 + scale,
       child: GestureDetector(
-        child: Icon(
-          item.icon,
-          color: selected ? selectedColor : unSelectedColor,
-          size: iconSize,
-        ),
+        child: Padding(
+            padding:
+                const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+            child: Icon(
+              item.icon,
+              color: selected ? selectedColor : unSelectedColor,
+              size: iconSize,
+            )),
         onTap: onPressed,
       ),
     );
